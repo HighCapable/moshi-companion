@@ -115,7 +115,7 @@ val moshi = Moshi.Builder()
 ```kotlin
 ksp {
     // 自定义 AdapterRegistry 的包名，如果是 Android 项目，推荐直接使用 "android.namespace"
-    arg("moshi-companion.generateAdapterRegistryPackageName", "com.yourdomain.yourpackage.generated")
+    arg("moshi-companion.generateAdapterRegistryPackageName", "com.yourdomain.yourpackage")
     // 自定义 AdapterRegistry 的类名
     arg("moshi-companion.generateAdapterRegistryClassName", "YourCustomMoshiAdapterRegistry")
 }
@@ -198,10 +198,10 @@ val adapter = moshi.adapter<List<YourDataClass>>(type)
 release {
     isMinifyEnabled = true
 
-    proguardFiles(
-        getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro",
-        // 指定 Moshi Companion 生成的混淆规则文件
-        file("build/generated/ksp/release/resources/META-INF/proguard/").listFiles()!!.first()
-    )
+    proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    // 指定 Moshi Companion 生成的混淆规则文件
+    file("build/generated/ksp/release/resources/META-INF/proguard/").listFiles()?.firstOrNull()?.let {
+        proguardFiles(it)
+    }
 }
 ```

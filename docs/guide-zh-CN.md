@@ -201,7 +201,7 @@ release {
     proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     // 指定 Moshi Companion 生成的混淆规则文件
     file("build/generated/ksp/release/resources/META-INF/proguard/").listFiles()?.firstOrNull()?.let {
-        proguardFiles(it)
+        proguardFiles += it
     }
 }
 ```

@@ -17,23 +17,23 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("com.highcapable.sweetproperty") version "1.0.8"
+    id("com.highcapable.gropify") version "1.0.1"
 }
 
-sweetProperty {
+gropify {
     global {
-        sourcesCode {
+        android {
             includeKeys(
                 "^project\\..*\$".toRegex(),
                 "^gradle\\..*\$".toRegex()
             )
-            isEnableRestrictedAccess = true
+            isRestrictedAccessEnabled = true
         }
     }
 
     rootProject {
-        all {
-            isEnable = false
+        common {
+            isEnabled = false
         }
     }
 }

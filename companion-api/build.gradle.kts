@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
-group = property.project.groupName
-version = property.project.version
+group = gropify.project.groupName
+version = gropify.project.version
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
